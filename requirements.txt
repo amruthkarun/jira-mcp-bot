@@ -1,0 +1,6 @@
+streamlit
+mcp-atlassian
+transformers
+torch
+accelerate
+python-dotenv
