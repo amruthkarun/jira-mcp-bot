@@ -18,24 +18,20 @@ def generate_issue_title(user_input: str) -> str:
     Uses few-shot prompt to generate a concise Jira issue title.
     """
 
+    print("Generating title:")
     prompt = (
         "Convert the following user request into a concise and professional Jira issue title.\n"
         "Keep it under 12 words.\n\n"
-        "Example 1:\n"
+        
         "User: Create an issue for Grafana log monitoring\n"
         "Issue Title: Grafana log monitoring issue\n\n"
-        "Example 2:\n"
-        "User: File a task for fixing the broken login form on mobile\n"
-        "Issue Title: Fix broken login form on mobile\n\n"
-        "Example 3:\n"
-        "User: Add a bug ticket to resolve API timeout when fetching user data\n"
-        "Issue Title: Resolve API timeout fetching user data\n\n"
-        "Example 4:\n"
+
         "User: Open a task in DEVOPS to upgrade dependencies\n"
         "Issue Title: Upgrade dependencies in DEVOPS\n\n"
-        "Example 5:\n"
+        
         "User: Create a Jira issue to improve dashboard responsiveness\n"
         "Issue Title: Improve dashboard responsiveness\n\n"
+
         f"User: {user_input}\n"
         "Issue Title:"
     )
@@ -60,6 +56,8 @@ def generate_issue_title(user_input: str) -> str:
     
     title = response.strip().split("\n")[0]
     title = title.strip().capitalize()
+
+    print(title)
 
     return title
 
@@ -112,7 +110,7 @@ def get_intent(user_input: str) -> str:
         )
 
     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
-    print(f"[DEBUG] LLM Output:\n{decoded}")
+    # print(f"[DEBUG] LLM Output:\n{decoded}")
 
     # Reverse search for the last line that looks like "Intent: ..."
     intent_line = ""
